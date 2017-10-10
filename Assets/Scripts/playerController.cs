@@ -2,44 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// put this script on your player Cube
 public class playerController : MonoBehaviour {
 
-	Rigidbody myRigidbody; // assigned in Start
+	Vector3 inputVector; // take input from Update, and send it into FixedUpdate for physics
 	private gameManager gm;
-	Vector3 inputVector; // store our input from Update(), and we'll put this into physics
 
-	// Use this for initialization
-	void Start () {
-		myRigidbody = GetComponent<Rigidbody>(); // assign reference to RB in Start
-
+	void Awake (){
 		gm = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<gameManager>();
 	}
 
-	// regular Update is called once per frame, where we do rendering + input
+	// Update is called once per frame
 	void Update () {
-		// horizontal input is A/D, LeftArrow/RightArrow
-		float inputHorizontal = Input.GetAxis( "Horizontal" );
-		// vertical input is W/S, UpArrow/DownArrow
-		float inputVertical = Input.GetAxis( "Vertical" );
+		// grab input for this frame
+		float horizontalInput = Input.GetAxis( "Horizontal" ); // A/D, LeftArrow/RightArrow
+		float verticalInput = Input.GetAxis( "Vertical" ); // W/S, UpArrow/DownArrow
 
-		// rotate the cube
-		transform.Rotate( 0f, inputHorizontal * Time.deltaTime * 90f, 0f );
+		// transform our input values based on this transform's "right" / "forward" directions
+		inputVector = transform.right * horizontalInput + transform.forward * verticalInput;
 
-		// put our input values into an "input vector"
-		inputVector = new Vector3( 0f, 0f, inputVertical );
-
-		// normalize inputVector if magnitude > 1f, to avoid diagonal movement exploit
+		// normalize the inputVector so that diagonal movement isn't faster
 		if( inputVector.magnitude > 1f ) {
 			inputVector = Vector3.Normalize( inputVector );
 		}
 	}
 
-	// FixedUpdate runs at a "Fixed" framerate, which is when physics run
+	// FixedUpdate is called once per physics frame
 	void FixedUpdate () {
-		// both of these lines of code do basically the same thing
-
-		myRigidbody.AddRelativeForce( inputVector * 10f );
+		// if( inputVector.magnitude > 0.001f ) {
+		GetComponent<Rigidbody>().velocity = inputVector * 25f + Physics.gravity * 0.62f;
+		// } 
 	}
 
 	void OnTriggerEnter (Collider col) {
@@ -47,5 +38,5 @@ public class playerController : MonoBehaviour {
 			Destroy (col.gameObject);
 			gm.points += 1;
 		}
-}
+	}
 }
