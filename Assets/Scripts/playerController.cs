@@ -36,7 +36,7 @@ public class playerController : MonoBehaviour {
 		//Here's the script for checking if a door is there
 		Ray shootRay = new Ray (transform.position, transform.forward);
 		float maxRayDistance = 10f;
-		Debug.DrawRay (shootRay.origin, shootRay.direction, Color.yellow);
+		Debug.DrawRay (shootRay.origin, shootRay.direction*10, Color.yellow);
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			Debug.Log ("Is the player near a door? Raycast Fired!");
@@ -45,6 +45,7 @@ public class playerController : MonoBehaviour {
 			if (Physics.Raycast (shootRay, out shootRayHit, maxRayDistance) && shootRayHit.collider.gameObject.tag == "Door") {
 				//The Ray hit the door!! Now we can do stuff!!!
 				Debug.Log ("A door was hit!");
+				door = shootRayHit.transform.GetComponent<doorScript> ();
 				door.TrickOrTreat ();
 			} else {
 				Debug.Log ("No door was hit. :(");
