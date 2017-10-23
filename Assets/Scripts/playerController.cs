@@ -46,7 +46,10 @@ public class playerController : MonoBehaviour {
 				//The Ray hit the door!! Now we can do stuff!!!
 				Debug.Log ("A door was hit!");
 				door = shootRayHit.transform.GetComponent<doorScript> ();
-				door.TrickOrTreat ();
+
+				if (door.wasVisited == false) {
+					door.TrickOrTreat ();
+				}
 			} else {
 				Debug.Log ("No door was hit. :(");
 			}

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class doorScript : MonoBehaviour {
-	
+
+
+	public bool wasVisited = false;
 	private gameManager gm;
 
 	void Awake (){
@@ -27,6 +27,8 @@ public class doorScript : MonoBehaviour {
 			//Code for ghost here
 			Debug.Log ("Trick! No candy... :(");
 		}
+
+		wasVisited = true;
 	}
 }
 
