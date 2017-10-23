@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class playerController : MonoBehaviour {
 
 	Vector3 inputVector; // take input from Update, and send it into FixedUpdate for physics
-	private gameManager gm;
+//	private gameManager gm;
 	private doorScript door;
 
 	public Text endText;
 
 	void Awake (){
-		gm = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<gameManager>();
+//		gm = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<gameManager>();
 		door = GameObject.FindGameObjectWithTag ("Door").GetComponent<doorScript>();
 	}
 
