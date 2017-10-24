@@ -9,6 +9,9 @@ public class visualFeedback : MonoBehaviour {
 	public AudioClip candy;
 	public AudioClip ghost;
 
+	private gameManager gm;
+
+
 	IEnumerator candyWait(){
 		candyEffect.gameObject.SetActive (true);
 		yield return new WaitForSeconds (3f);
@@ -22,6 +25,7 @@ public class visualFeedback : MonoBehaviour {
 	}
 
 	void Start () {
+		gm = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<gameManager> ();
 		candyEffect.gameObject.SetActive (false);
 		ghostEffect.gameObject.SetActive (false);
 	
@@ -36,13 +40,14 @@ public class visualFeedback : MonoBehaviour {
 	}
 
 	public void GhostEffect () {
-
-		AudioSource ourAudio = GetComponent<AudioSource> ();
-		ourAudio.PlayOneShot (ghost);
-		StartCoroutine (ghostWait ());
-
-	}
-
+		if (gm.ghostCount != 3) {
+			AudioSource ourAudio = GetComponent<AudioSource> ();
+			ourAudio.PlayOneShot (ghost);
+			StartCoroutine (ghostWait ());
+		}
+			else if (gm.ghostCount >=3){
+			}
+		}
 
 
 

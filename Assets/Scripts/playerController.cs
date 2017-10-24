@@ -35,7 +35,7 @@ public class playerController : MonoBehaviour {
 	
 		//Here's the script for checking if a door is there
 		Ray shootRay = new Ray (transform.position, transform.forward);
-		float maxRayDistance = 10f;
+		float maxRayDistance = 20f;
 		Debug.DrawRay (shootRay.origin, shootRay.direction*10, Color.yellow);
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
@@ -61,7 +61,7 @@ public class playerController : MonoBehaviour {
 	// FixedUpdate is called once per physics frame
 	void FixedUpdate () {
 		// if( inputVector.magnitude > 0.001f ) {
-		GetComponent<Rigidbody>().velocity = inputVector * 25f + Physics.gravity * 0.62f;
+		GetComponent<Rigidbody>().velocity = inputVector * 30f + Physics.gravity * 0.62f;
 		// } 
 	}
 

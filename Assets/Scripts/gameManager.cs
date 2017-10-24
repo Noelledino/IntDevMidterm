@@ -8,6 +8,7 @@ public class gameManager : MonoBehaviour {
 	public static gameManager instance = null;
 
 	public int housesVisited;
+	public int ghostCount;
 //	private doorScript door;
 //	public int points;
 //	public Text pointsText;
@@ -43,6 +44,7 @@ public class gameManager : MonoBehaviour {
 //		door = GameObject.FindGameObjectWithTag ("Door").GetComponent<doorScript> ();
 
 		housesVisited = 0;
+		ghostCount = 0;
 
 		//an incoming disaster
 		checkmark1.enabled = false;
@@ -135,7 +137,6 @@ public class gameManager : MonoBehaviour {
 	public void Restart () {
 		Time.timeScale = 1;
 		housesVisited = 0;
-
 
 	}
 }

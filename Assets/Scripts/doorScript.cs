@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class doorScript : MonoBehaviour {
 
+	public GameObject player;
 
 	public bool wasVisited = false;
 	private gameManager gm;
@@ -32,8 +33,11 @@ public class doorScript : MonoBehaviour {
 		}else{
 			//Code for ghost here
 			Debug.Log ("Trick! No candy... :(");
+			player.gameObject.GetComponent<AudioSource> ().Play();
+			gm.ghostCount++;
 			gm.addGhost ();
 			vfb.GhostEffect ();
+	
 		}
 
 		wasVisited = true;
