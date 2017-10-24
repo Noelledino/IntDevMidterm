@@ -34,12 +34,12 @@ public class gameManager : MonoBehaviour {
 	public Image ghost6;
 
 	void Awake () {
-		if (instance == null) {
-			instance = this;
-			DontDestroyOnLoad(gameObject);
-		} else if ( instance != this){
-			Destroy (gameObject);
-		}
+//		if (instance == null) {
+//			instance = this;
+//			DontDestroyOnLoad(gameObject);
+//		} else if ( instance != this){
+//			Destroy (gameObject);
+
 //		door = GameObject.FindGameObjectWithTag ("Door").GetComponent<doorScript> ();
 
 		housesVisited = 0;
@@ -67,6 +67,7 @@ public class gameManager : MonoBehaviour {
 		candy6.enabled = false;
 	}
 
+
 	void Update () {
 		if (housesVisited == 1) {
 			checkmark1.enabled = true;
@@ -87,7 +88,7 @@ public class gameManager : MonoBehaviour {
 			checkmark6.enabled = true;
 		}
 
-//		pointsText.text = ("" + points + " candy");
+//		These are the UI Scripts.
 	}
 	public void addGhost () {
 		if (housesVisited == 1) {
@@ -129,5 +130,12 @@ public class gameManager : MonoBehaviour {
 		if (housesVisited == 6) {
 			candy6.enabled = true;
 		}
+	}
+
+	public void Restart () {
+		Time.timeScale = 1;
+		housesVisited = 0;
+
+
 	}
 }

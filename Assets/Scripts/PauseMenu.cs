@@ -12,6 +12,12 @@ public class PauseMenu : MonoBehaviour {
 
 	public GameObject pauseMenuCanvas;
 
+	private gameManager gm;
+
+	void Start () {
+		gm = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<gameManager> ();
+	}
+
 	void Update () {
 		if (isPaused) {
 			pauseMenuCanvas.SetActive (true);
@@ -33,6 +39,7 @@ public class PauseMenu : MonoBehaviour {
 	}
 
 	public void RestartGame(){
+		gm.Restart ();
 		SceneManager.LoadScene (restart);
 	}
 

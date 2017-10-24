@@ -65,12 +65,6 @@ public class playerController : MonoBehaviour {
 		// } 
 	}
 
-
-	void onTriggerEnter (Collider col) {
-		if (col.CompareTag ("END")) {
-			Debug.Log ("Player ended game");
-			endText.text = ("OK THE GAME IS OVER FOR NOW");
-		}
 	}
 
 //	void OnTriggerEnter (Collider col) {
@@ -79,4 +73,3 @@ public class playerController : MonoBehaviour {
 //			gm.points += 1;
 //		}
 //	}
-}

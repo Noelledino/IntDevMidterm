@@ -9,10 +9,11 @@ public class doorScript : MonoBehaviour {
 	private gameManager gm;
 	public int randNum;
 	public int lastRandNum;
+	private visualFeedback vfb;
 
 	void Awake (){
 		gm = GameObject.FindGameObjectWithTag ("GameManager").GetComponent<gameManager> ();
-
+		vfb = GameObject.FindGameObjectWithTag ("VisualFeedback").GetComponent<visualFeedback> ();
 	}
 
 	void Update(){
@@ -27,10 +28,12 @@ public class doorScript : MonoBehaviour {
 			//Code for treat here
 			Debug.Log ("Treat! Player Gets some candy!");
 			gm.addCandy ();
+			vfb.CandyEffect ();
 		}else{
 			//Code for ghost here
 			Debug.Log ("Trick! No candy... :(");
 			gm.addGhost ();
+			vfb.GhostEffect ();
 		}
 
 		wasVisited = true;
